@@ -58,6 +58,7 @@ const dream = [
 ]
 console.log(findSafestPath(dream)) // Devuelve 7 */
 
+<<<<<<< HEAD
 /* // Challenge04
 function findTheKiller(whisper, suspects) {
   const regexString = '^' + whisper.replace(/~/g, '.') 
@@ -73,6 +74,9 @@ function findTheKiller(whisper, suspects) {
 const whisper = 'd~~~~~a'
 const suspects = ['Dracula', 'Freddy Krueger', 'Jason Voorhees', 'Michael Myers']
 console.log(findTheKiller(whisper, suspects)) // "Dracula" */
+=======
+// Challenge04
+>>>>>>> f594ac4535a852cd46406d97315ef9d604036481
 
 // Challenge05
 function escapePyramidHead(room) {
