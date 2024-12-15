@@ -1,3 +1,5 @@
+// https://adventjs.dev/es
+
 /* // Challenge01
 const gifts = [6, 5, 5, 5, 5]
 function prepareGifts(gifts) {
@@ -131,12 +133,31 @@ function drawRace(indices, length) {
 }
 console.log(drawRace([2, -1, 0, 5], 8)) */
 
-/* /* // Challenge09
- function moveTrain(board, mov) {
-  // Code here
-  return 'none';
-}
+/* // Challenge09
+function moveTrain(board, mov) {
+  let row, col
+  for (let i = 0; i < board.length; i++) {
+    const colIndex = board[i].indexOf('@')
+    if (colIndex !== -1) {
+      row = i
+      col = colIndex
+    }
+  }
+  if (mov === 'L') { col -= 1 } 
+  else if (mov === 'R') { col += 1 } 
+  else if (mov === 'U') { row -= 1 } 
+  else if (mov === 'D') { row += 1 }
+   
+  if (row < 0 || row >= board.length || col < 0 || col >= board[row].length) {
+    return 'crash'
+  }
 
+  const target = board[row][col]
+  if (target === '*') { return 'eat' } 
+  else if (target === 'o') { return 'crash' } 
+  else if (target === '.') { return 'none' }
+  return 'none'
+}
 const board = [
   '·····',
   '*····',
@@ -144,18 +165,7 @@ const board = [
   'o····',
   'o····'
 ]
-
-console.log(moveTrain(board, 'U'))
-// ➞ 'eat'
-// Porque el tren se mueve hacia arriba y encuentra una fruta mágica
-
-console.log(moveTrain(board, 'D'))
-// ➞ 'crash'
-// El tren se mueve hacia abajo y la cabeza se choca consigo mismo
-
-console.log(moveTrain(board, 'L'))
-// ➞ 'crash'
-// El tren se mueve a la izquierda y se choca contra la pared */
+console.log(moveTrain(board, 'D'))  */
 
 /* /* // Challenge10
  function compile(instructions) {
@@ -229,9 +239,36 @@ isRobotBack('U?U')   // [0,1]
 isRobotBack('*U?U')  // [0,2]
 isRobotBack('U?D?U') // true */
 
-// Challenge14
+/* // Challenge14
+function minMovesToStables(reindeer, stables) {
+  reindeer.sort((a, b) => a - b)
+  stables.sort((a, b) => a - b)
+  let totalMoves = 0
+  for (let i = 0; i < reindeer.length; i++) {
+    totalMoves += Math.abs(reindeer[i] - stables[i])
+  }
+  return totalMoves
+}
+console.log(minMovesToStables([1, 1, 3], [1, 4, 8])) // -> 8 */
 
 // Challenge15
 
+// Challenge16
 
+// Challenge17
 
+// Challenge18
+
+// Challenge19
+
+// Challenge20
+
+// Challenge21
+
+// Challenge22
+
+// Challenge23
+
+// Challenge24
+
+// Challenge25

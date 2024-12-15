@@ -1,3 +1,5 @@
+// https://2023.adventjs.dev/es
+
 /* // Challenge01
 function findFirstRepeated(gifts) {
   const repeated = gifts.filter((gift, i) => gifts.indexOf(gift) !== i)
@@ -46,15 +48,77 @@ function decode(message) {
 }
 console.log(decode('sa(u(cla)atn)s')) */
 
-// Challenge05
+/* // Challenge05
+function cyberReindeer(road, time) {
+  let result = [road]
+  let lastChar = '.'
 
-// Challenge06
+  for (let i = 1; i < time; i++) {
+    if (i === 5) { road = road.replaceAll('|', '*') }
+    const matches = road.match(/S[\*\.]/g)
+    if (matches) {
+      road = road.replace(matches[0], lastChar + 'S')
+      lastChar = matches[0][1]
+    }
+    result.push(road)
+  }
+  return result
+}
+const road = 'S..|...|..'
+const time = 10
+console.log(cyberReindeer(road, time)) */
 
-// Challenge07
+/* // Challenge06
+function maxDistance(movements) {
+  let test = movements.split('')
+  let derecha = 0
+  let izquierda = 0
+  for (let i = 0; i < test.length; i++) {
+    if (movements[i] === '>') { derecha += 1 , izquierda -= 1 }
+    if (movements[i] === '<') { derecha -= 1 , izquierda += 1 }
+    if (movements[i] === '*' ) { derecha += 1 , izquierda += 1 }
+  }
+  if (izquierda >= derecha) { return izquierda }
+  if (izquierda < derecha) { return derecha }
+}
+const movements = '>***>' // -> 5
+console.log(maxDistance(movements)) */
+
+/* // Challenge07
+function drawGift(size, symbol) {
+  if (size === 1) return '#\n'
+  const filas = []
+  filas[0] = '#'.repeat(size).padStart(size * 2 - 1)
+  filas[size * 2 - 2] = '#'.repeat(size)
+  filas[size - 1] = `${'#'.repeat(size)}${symbol.repeat(size - 2) + '#'}`
+  for (let fila = 1; fila < size - 1; fila++) {
+    let draft = `#${symbol.repeat(size - 2)}#${symbol.repeat(fila - 1)}#`
+
+    filas[fila] = draft.padStart(size * 2 - 1, ' ' )
+    filas[size * 2 - 2 - fila] = draft
+  }
+  return filas.join('\n').concat('\n')
+}
+console.log(drawGift(10, '*')) */
 
 // Challenge08
 
-// Challenge09
+/* // Challenge09
+function adjustLights(lights) {
+  function checkLigths(lights) {
+    let changes = 0
+    for (let i = 1; i < lights.length; i++) {
+      if (lights[i] === lights[i - 1]) {
+        changes++
+        lights[i] = lights[i] === '🟢' ? '🔴' : '🟢'
+      }
+    }
+    return changes
+  }
+  return Math.min(checkLigths([...lights]), checkLigths([...lights].reverse()))
+}
+console.log(adjustLights(["🔴", "🔴", "🟢", "🔴", "🟢"])) */
+
 
 /* // Challenge10
 function createChristmasTree(ornaments, height) {
@@ -75,3 +139,33 @@ function createChristmasTree(ornaments, height) {
 }
 
 console.log(createChristmasTree("x", 3)) */
+
+// Challenge11
+
+// Challenge12
+
+// Challenge13
+
+// Challenge14
+
+// Challenge15
+
+// Challenge16
+
+// Challenge17
+
+// Challenge18
+
+// Challenge19
+
+// Challenge20
+
+// Challenge21
+
+// Challenge22
+
+// Challenge23
+
+// Challenge24
+
+// Challenge25
