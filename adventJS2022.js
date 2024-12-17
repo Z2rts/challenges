@@ -1,6 +1,18 @@
 // https://2022.adventjs.dev/es
 
-// Challenge01
+/* // Challenge01
+function wrapping(gifts) {
+  let result = []
+  for (const gift of gifts) {result.push("*".repeat(gift.length) 
+    + "**\n*" 
+    + gift 
+    + "*\n**" 
+    + "*".repeat(gift.length))
+  }
+  return result
+}
+const gifts = ['cat', 'game', 'socks']
+console.log(wrapping(gifts)) */
 
 // Challenge04
 

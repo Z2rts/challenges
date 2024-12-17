@@ -101,7 +101,24 @@ function drawGift(size, symbol) {
 }
 console.log(drawGift(10, '*')) */
 
-// Challenge08
+/* // Challenge08
+function organizeGifts(gifts) {
+  const regex = (/(\d*\w)/g)
+  const matches = gifts.match(regex)
+  for (const match of matches) {
+    let count = match.slice(0, -1)
+    let gift = match.at(-1)
+    const palets = Math.floor(count / 50)
+    count -= palets * 50
+    const cajas = Math.floor(count / 10)
+    count -= cajas * 10
+    gifts = gifts.replace(match, `${palets ? `[${gift}]`.repeat(palets) : ''}${cajas ? `{${gift}}`.repeat(cajas) : ''}${count ? `(${gift.repeat(count)})` : ''}`)
+  }
+  return gifts
+}
+// console.log(organizeGifts(`76a11b`))
+console.log(organizeGifts(`20a`))  
+*/
 
 /* // Challenge09
 function adjustLights(lights) {
@@ -118,7 +135,6 @@ function adjustLights(lights) {
   return Math.min(checkLigths([...lights]), checkLigths([...lights].reverse()))
 }
 console.log(adjustLights(["🔴", "🔴", "🟢", "🔴", "🟢"])) */
-
 
 /* // Challenge10
 function createChristmasTree(ornaments, height) {
@@ -141,6 +157,8 @@ function createChristmasTree(ornaments, height) {
 console.log(createChristmasTree("x", 3)) */
 
 // Challenge11
+// https://www.youtube.com/watch?v=zpuS_OoPSjg
+// min 1:22
 
 // Challenge12
 

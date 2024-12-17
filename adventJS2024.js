@@ -251,9 +251,61 @@ function minMovesToStables(reindeer, stables) {
 }
 console.log(minMovesToStables([1, 1, 3], [1, 4, 8])) // -> 8 */
 
-// Challenge15
+/* // Challenge15
+function drawTable(data) {
+  const index = Object.keys(data[0])
 
-// Challenge16
+  const table = `// +---------+-----------+
+// | ${index[0].charAt(0).toUpperCase() + index[0].slice(1)}    | ${index[1].charAt(0).toUpperCase() + index[1].slice(1)}      |
+// +---------+-----------+
+// | ${data[0].name}   | ${data[0].city}   |
+// | ${data[1].name}   |  ${data[1].city}     |
+// | ${data[2].name}   |  ${data[2].city}   |
+// +---------+-----------+`
+  // console.log(table)
+  return table
+}
+
+console.log(drawTable([
+  { name: 'Alice', city: 'London' },
+  { name: 'Bob', city: 'Paris' },
+  { name: 'Charlie', city: 'New York' }
+])) */
+// +---------+-----------+
+// | Name    | City      |
+// +---------+-----------+
+// | Alice   | London    |
+// | Bob     | Paris     |
+// | Charlie | New York  |
+// +---------+-----------+
+
+/* drawTable([
+  { gift: 'Doll', quantity: 10 },
+  { gift: 'Book', quantity: 5 },
+  { gift: 'Music CD', quantity: 1 }
+]) */
+// +----------+----------+
+// | Gift     | Quantity |
+// +----------+----------+
+// | Doll     | 10       |
+// | Book     | 5        |
+// | Music CD | 1        |
+// +----------+----------+
+
+/* // Challenge16
+function removeSnow(s) {
+  const stack = []
+  for (let char of s) {
+    if (stack.length > 0 && stack[stack.length - 1] === char) {
+      stack.pop()
+    } else {
+      stack.push(char)
+    }
+  }
+  return stack.join('')
+}
+console.log(removeSnow('aaabbaacc')) 
+ */
 
 // Challenge17
 
