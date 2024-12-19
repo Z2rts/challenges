@@ -157,8 +157,7 @@ function createChristmasTree(ornaments, height) {
 console.log(createChristmasTree("x", 3)) */
 
 // Challenge11
-// https://www.youtube.com/watch?v=zpuS_OoPSjg
-// min 1:22
+
 
 // Challenge12
 
