@@ -156,11 +156,42 @@ function createChristmasTree(ornaments, height) {
 
 console.log(createChristmasTree("x", 3)) */
 
-// Challenge11
-// https://www.youtube.com/watch?v=zpuS_OoPSjg
-// min 1:22
+/* // Challenge11
+function getIndexsForPalindrome(word) {
+  function reverseWord(word) {
+    return word === word.split('').reverse().join('')
+  }
 
-// Challenge12
+  function swap(word, start, end) {
+    const palabra = word.split('');
+    [palabra[start], palabra[end]] = [palabra[end], palabra[start]]
+    return palabra.join('')
+  }
+
+  if (reverseWord(word)) return []
+
+  for (let start = 0; start < word.length; start++) {
+    for (let end = 0; end < word.length; end++) {
+      if (reverseWord(swap(word, start, end))) { return [start, end] }
+    }
+  }
+  return null
+}
+console.log(getIndexsForPalindrome('aaababa')) // [1, 3] */
+
+/* // Challenge12
+function checkIsValidCopy(original, copy) {
+  for (let index = 0; index < original.length; index++) {
+    let char = original[index].match(/\w/)
+    const valide = `${char ? `${char}${char[0].toLowerCase()}` : ''}#+:. `
+    // console.log(original[index], valide)
+    if (valide.indexOf(copy[index]) < valide.indexOf(original[index])) {
+      return false
+    }
+  }
+  return true
+}
+console.log(checkIsValidCopy('Santa Claus', 's#+:. c:. s')) // true */
 
 // Challenge13
 
