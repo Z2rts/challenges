@@ -156,11 +156,16 @@ function createChristmasTree(ornaments, height) {
 
 console.log(createChristmasTree("x", 3)) */
 
+<<<<<<< HEAD
 /* // Challenge11
 function getIndexsForPalindrome(word) {
   function reverseWord(word) {
     return word === word.split('').reverse().join('')
   }
+=======
+// Challenge11
+
+>>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   function swap(word, start, end) {
     const palabra = word.split('');

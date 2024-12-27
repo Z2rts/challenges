@@ -5,7 +5,7 @@ const gifts = [6, 5, 5, 5, 5]
 function prepareGifts(gifts) {
   const uniqueGifts = [...new Set(gifts)]
   uniqueGifts.sort(function (a, b) {
-    return a -b
+    return a - b
   })
   return uniqueGifts
 }
@@ -36,17 +36,17 @@ const inventory = [
   { name: 'car', quantity: 2, category: 'toys' },
   { name: 'racket', quantity: 4, category: 'sports' }
 ]
-console.log(organizeInventory(inventory))*/
+console.log(organizeInventory(inventory)) */
 
 /* // Challenge04
 function drawChristmasTree(height, ornament) {
-  const air  = '_'
+  const air = '_'
   const trunk = '#'
   let result = ''
-  let spaces = air.repeat(height -1)
+  let spaces = air.repeat(height - 1)
 
   for (let i = 0; i < height; i++) {
-    let spaces = air.repeat(height - i -1 )
+    let spaces = air.repeat(height - i - 1)
     let stars = ornament.repeat(2 * i + 1)
     result += spaces + stars + spaces + '\n'
   }
@@ -87,18 +87,14 @@ console.log(organizeShoes(shoes)) */
 
 /* // Challenge06
 function inBox(box) {
-  for (let i = 1; i < box.length -1; i++) {
+  for (let i = 1; i < box.length - 1; i++) {
     if (box[i].includes('*') && box[i].indexOf('*') > 0 && box[i].indexOf('*') < box[i].length - 1) {
       return true
     }
   }
   return false
 }
-console.log(inBox([
-  "###",
-  "#*#",
-  "###"
-])) */
+console.log(inBox(["###", "#*#", "###"])) */
 
 /* // Challenge07
 function fixPackages(packages) {
@@ -121,13 +117,13 @@ function drawRace(indices, length) {
     let lane = Array(length).fill('~')
 
     if (index > 0) {
-      lane[index -1] = 'r'
+      lane[index - 1] = 'r'
     } else if (index < 0) {
       lane[length + index] = 'r'
     }
 
-    let laneStr = lane.join('') + ` /${i +1}`
-    track.push(' '.repeat(indices.length -i -1) + laneStr)
+    let laneStr = lane.join('') + ` /${i + 1}`
+    track.push(' '.repeat(indices.length - i - 1) + laneStr)
   })
   return track.join('\n')
 }
@@ -143,18 +139,18 @@ function moveTrain(board, mov) {
       col = colIndex
     }
   }
-  if (mov === 'L') { col -= 1 } 
-  else if (mov === 'R') { col += 1 } 
-  else if (mov === 'U') { row -= 1 } 
+  if (mov === 'L') { col -= 1 }
+  else if (mov === 'R') { col += 1 }
+  else if (mov === 'U') { row -= 1 }
   else if (mov === 'D') { row += 1 }
-   
+
   if (row < 0 || row >= board.length || col < 0 || col >= board[row].length) {
     return 'crash'
   }
 
   const target = board[row][col]
-  if (target === '*') { return 'eat' } 
-  else if (target === 'o') { return 'crash' } 
+  if (target === '*') { return 'eat' }
+  else if (target === 'o') { return 'crash' }
   else if (target === '.') { return 'none' }
   return 'none'
 }
@@ -165,10 +161,11 @@ const board = [
   'o····',
   'o····'
 ]
-console.log(moveTrain(board, 'D'))  */
+console.log(moveTrain(board, 'D')) */
 
 /* // Challenge10
 function compile(instructions) {
+<<<<<<< HEAD
   const buffer = {}
   for (let i = 0; i < instructions.length; i++) {
     const [instruction, a, b] = instructions[i].split(' ')
@@ -195,6 +192,10 @@ function compile(instructions) {
     }
   }
   return buffer.A
+=======
+  // Code here
+  //return 0
+>>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 }
 const instructions = [
   'MOV -1 C', // copia -1 al registro 'C',
@@ -213,8 +214,7 @@ function decodeFilename(filename) {
   console.log(file)
   return file
 }
-decodeFilename('42_chimney_dimensions.pdf.hack2023')
- */
+decodeFilename('42_chimney_dimensions.pdf.hack2023') */
 
 /* // Challenge12
 function calculatePrice(ornaments) {
@@ -238,9 +238,9 @@ function calculatePrice(ornaments) {
   }
   return result
 }
-console.log(calculatePrice('*o*'))  // 5  (-1 + 5 + 1) */
+console.log(calculatePrice('*o*')) */
 
-/* /* // Challenge13
+/* // Challenge13
 function isRobotBack(moves) {
   // Code here
   return true
@@ -271,12 +271,13 @@ function minMovesToStables(reindeer, stables) {
   }
   return totalMoves
 }
-console.log(minMovesToStables([1, 1, 3], [1, 4, 8])) // -> 8 */
+console.log(minMovesToStables([1, 1, 3], [1, 4, 8]))  */
 
 /* // Challenge15
 function drawTable(data) {
   const index = Object.keys(data[0])
 
+<<<<<<< HEAD
   let table = ''
   let spaceRow1 = 0
   let spaceRow2 = 0
@@ -307,10 +308,20 @@ function drawTable(data) {
   }
 
   table += `+-${spaces1}-+-${spaces2}-+`
+=======
+  const table = `// +---------+-----------+
+// | ${index[0].charAt(0).toUpperCase() + index[0].slice(1)}    | ${index[1].charAt(0).toUpperCase() + index[1].slice(1)}      |
+// +---------+-----------+
+// | ${data[0].name}   | ${data[0].city}   |
+// | ${data[1].name}   |  ${data[1].city}     |
+// | ${data[2].name}   |  ${data[2].city}   |
+// +---------+-----------+`
+>>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   return table
 }
 console.log(drawTable([
+<<<<<<< HEAD
   { id: 1, score: 34 },
   { id: 2, score: '!' }
 ]))
@@ -337,6 +348,12 @@ console.log(drawTable([
   table += `+${columnWidths.map(width => '-'.repeat(width + 2)).join('+')}+`
   return table
 } */
+=======
+  { name: 'Alice', city: 'London' },
+  { name: 'Bob', city: 'Paris' },
+  { name: 'Charlie', city: 'New York' }
+])) */
+>>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
 /* // Challenge16
 function removeSnow(s) {
@@ -350,6 +367,7 @@ function removeSnow(s) {
   }
   return stack.join('')
 }
+<<<<<<< HEAD
 console.log(removeSnow('aaabbaacc'))
  */
 
@@ -357,6 +375,55 @@ console.log(removeSnow('aaabbaacc'))
 function detectBombs(grid) {
   const rows = grid.length
   const cols = grid[0].length
+=======
+console.log(removeSnow('aaabbaacc'))  */
+
+/* // Challenge17
+function detectBombs(grid) {
+  const result = []
+  for (let i = 0; i < grid.length; i++) {
+    result.push([])
+    for (let j = 0; j < grid[i].length; j++) {
+      let count = 0
+
+      if (grid[i][j] === true && grid[i][j + 1] === false) {
+        result[i].push(0)
+        continue
+      }
+
+      if (grid[i][j] && grid[j + 1]) {
+        result[i].push(3)
+        continue
+      } if (grid[i][j] && grid[j - 1]) {
+        result[i].push(3)
+        continue
+      }
+      if (grid[i][j]) {
+        result[i].push(0)
+        continue
+      }
+      for (let x = i - 1; x <= i + 1; x++) {
+        for (let y = j - 1; y <= j + 1; y++) {
+          if (x >= 0 && x < grid.length && y >= 0 && y < grid[i].length && grid[x][y]) {
+            count++
+          }
+        }
+      }
+      result[i].push(count)
+    }
+  }
+  return result
+}
+
+console.log(detectBombs([
+  [true, false],
+  [false, false]
+]))
+// [
+//   [0, 1],
+//   [1, 1]
+// ] */
+>>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   const result = Array.from({ length: rows }, () => Array(cols).fill(0))
 
