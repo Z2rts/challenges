@@ -165,7 +165,6 @@ console.log(moveTrain(board, 'D')) */
 
 /* // Challenge10
 function compile(instructions) {
-<<<<<<< HEAD
   const buffer = {}
   for (let i = 0; i < instructions.length; i++) {
     const [instruction, a, b] = instructions[i].split(' ')
@@ -192,10 +191,6 @@ function compile(instructions) {
     }
   }
   return buffer.A
-=======
-  // Code here
-  //return 0
->>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 }
 const instructions = [
   'MOV -1 C', // copia -1 al registro 'C',
@@ -242,24 +237,72 @@ console.log(calculatePrice('*o*')) */
 
 /* // Challenge13
 function isRobotBack(moves) {
-  // Code here
-  return true
-}
+  const position = {
+    x: 0,
+    y: 0
+  }
+  const history = []
+  const regex = /[\*\!\?]?\w/gm
+  const inverted = {
+    'D': 'U',
+    'U': 'D',
+    'L': 'R',
+    'R': 'L'
+  }
+  const matches = moves.match(regex)
 
-isRobotBack('R')     // [1, 0]
-isRobotBack('RL')    // true
-isRobotBack('RLUD')  // true
-isRobotBack('*RU')   // [2, 1]
-isRobotBack('R*U')   // [1, 2]
-isRobotBack('LLL!R') // [-4, 0]
-isRobotBack('R?R')   // [1, 0]
-isRobotBack('U?D')   // true
-isRobotBack('R!L')   // [2,0]
-isRobotBack('U!D')   // [0,2]
-isRobotBack('R?L')   // true
-isRobotBack('U?U')   // [0,1]
-isRobotBack('*U?U')  // [0,2]
-isRobotBack('U?D?U') // true */
+  if (!matches) return true
+
+  for (const match of matches) {
+    let queue = []
+
+    if (match.length === 2) {
+      switch (match[0]) {
+        case '*': {
+          queue = [match[1], match[1]]
+          break
+        }
+        case '!': {
+          queue = [inverted[match[1]]]
+          break
+        }
+        case '?': {
+          if (!history.includes(match[1])) {
+            queue = [match[1]]
+          }
+          break
+        }
+      }
+    } else {
+      queue = [match[0]]
+    }
+
+    for (const movement of queue) {
+      history.push(movement)
+
+      switch (movement) {
+        case 'D': {
+          position.y--
+          break
+        }
+        case 'U': {
+          position.y++
+          break
+        }
+        case 'L': {
+          position.x--
+          break
+        }
+        case 'R': {
+          position.x++
+          break
+        }
+      }
+    }
+  }
+  return position.x === 0 && position.y === 0 ? true : [position.x, position.y]
+}
+console.log(isRobotBack('RL')) */
 
 /* // Challenge14
 function minMovesToStables(reindeer, stables) {
@@ -277,7 +320,6 @@ console.log(minMovesToStables([1, 1, 3], [1, 4, 8]))  */
 function drawTable(data) {
   const index = Object.keys(data[0])
 
-<<<<<<< HEAD
   let table = ''
   let spaceRow1 = 0
   let spaceRow2 = 0
@@ -308,20 +350,10 @@ function drawTable(data) {
   }
 
   table += `+-${spaces1}-+-${spaces2}-+`
-=======
-  const table = `// +---------+-----------+
-// | ${index[0].charAt(0).toUpperCase() + index[0].slice(1)}    | ${index[1].charAt(0).toUpperCase() + index[1].slice(1)}      |
-// +---------+-----------+
-// | ${data[0].name}   | ${data[0].city}   |
-// | ${data[1].name}   |  ${data[1].city}     |
-// | ${data[2].name}   |  ${data[2].city}   |
-// +---------+-----------+`
->>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   return table
 }
 console.log(drawTable([
-<<<<<<< HEAD
   { id: 1, score: 34 },
   { id: 2, score: '!' }
 ]))
@@ -348,12 +380,6 @@ console.log(drawTable([
   table += `+${columnWidths.map(width => '-'.repeat(width + 2)).join('+')}+`
   return table
 } */
-=======
-  { name: 'Alice', city: 'London' },
-  { name: 'Bob', city: 'Paris' },
-  { name: 'Charlie', city: 'New York' }
-])) */
->>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
 /* // Challenge16
 function removeSnow(s) {
@@ -367,7 +393,6 @@ function removeSnow(s) {
   }
   return stack.join('')
 }
-<<<<<<< HEAD
 console.log(removeSnow('aaabbaacc'))
  */
 
@@ -375,55 +400,6 @@ console.log(removeSnow('aaabbaacc'))
 function detectBombs(grid) {
   const rows = grid.length
   const cols = grid[0].length
-=======
-console.log(removeSnow('aaabbaacc'))  */
-
-/* // Challenge17
-function detectBombs(grid) {
-  const result = []
-  for (let i = 0; i < grid.length; i++) {
-    result.push([])
-    for (let j = 0; j < grid[i].length; j++) {
-      let count = 0
-
-      if (grid[i][j] === true && grid[i][j + 1] === false) {
-        result[i].push(0)
-        continue
-      }
-
-      if (grid[i][j] && grid[j + 1]) {
-        result[i].push(3)
-        continue
-      } if (grid[i][j] && grid[j - 1]) {
-        result[i].push(3)
-        continue
-      }
-      if (grid[i][j]) {
-        result[i].push(0)
-        continue
-      }
-      for (let x = i - 1; x <= i + 1; x++) {
-        for (let y = j - 1; y <= j + 1; y++) {
-          if (x >= 0 && x < grid.length && y >= 0 && y < grid[i].length && grid[x][y]) {
-            count++
-          }
-        }
-      }
-      result[i].push(count)
-    }
-  }
-  return result
-}
-
-console.log(detectBombs([
-  [true, false],
-  [false, false]
-]))
-// [
-//   [0, 1],
-//   [1, 1]
-// ] */
->>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   const result = Array.from({ length: rows }, () => Array(cols).fill(0))
 
@@ -631,26 +607,13 @@ function treeHeight(tree) {
   if (tree === null) {
     return 0
   }
-  for (elements in tree) {
-    if (tree.left === null) {
-      return 1
-    } if (tree.left.left === null) {
-      return 2
-    } if (tree.left.left.left === null) {
-      return 3
-    } if (tree.left.left.left.left === null) {
-      return 4
-    }  if (tree.left.left.left.left.left === null) {
-      return 5
-    } if (tree.left.left.left.left.left.left === null) {
-      return 6
-    } if (tree.left.left.left.left.left.left.left === null) {
-      return 7
-    } else {
-      return 8
-    }
-  }
+
+  const leftHeight = treeHeight(tree.left)
+  const rightHeight = treeHeight(tree.right)
+
+  return Math.max(leftHeight, rightHeight) + 1
 }
+
 const tree = {
   value: '🎁',
   left: {
