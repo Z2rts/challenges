@@ -198,7 +198,7 @@ const instructions = [
   'JMP C 1', // salta a la instrucción en el índice 1 si 'C' es 0
   'MOV C A', // copia el registro 'C' al registro 'a',
   'INC A' // incrementa el valor del registro 'a'
-] 
+]
 console.log(compile(instructions)) // -> 2  */
 
 /* // Challenge11
@@ -501,65 +501,52 @@ console.log(findInAgenda(agenda, '34-600-123-456')) */
 
 /* // Challenge19
 function distributeWeight(weight) {
+  const weights = [10, 5, 2, 1]
   const boxRepresentations = {
-    1: [" _ \n", "|_|"],
+    1: [" _ ", "|_|"],
     2: [" ___ ", "|___|"],
     5: [" _____ ", "|     |", "|_____|"],
-    10: [" _________ ", "|         |", "|_________|"]
+    10: [" _________ ", "|         |", "|_________|"],
+    11: ["_"]
+  }
+  let remainingWeight = weight
+  let boxes = []
+
+  for (let i = 0; i < weights.length; i++) {
+    if (weights[i] <= remainingWeight) {
+      remainingWeight -= weights[i]
+      boxes.push(weights[i])
+      i = -1
+    }
   }
 
-  if (weight === 1) {
-    return boxRepresentations[1].join('')
+  boxes.reverse()
+  if (boxes.length <= 1) { return boxRepresentations[boxes[0]].join('\n') }
+  let result = ''
+
+  for (let i = 0; i < boxes.length; i++) {
+    const currentBox = [...boxRepresentations[boxes[i]]]
+    if (boxRepresentations[boxes[i + 1]]) {
+
+      const nextBox = [...boxRepresentations[boxes[i + 1]]]
+      currentBox[currentBox.length - 1] += nextBox[0].slice(currentBox[currentBox.length - 1].length)
+      nextBox.shift()
+
+      if (i > 0) { currentBox.shift() }
+
+      currentBox[currentBox.length - 1] = currentBox[currentBox.length - 1].trim()
+      let currentBoxStr = currentBox.join('\n')
+      result += currentBoxStr + '\n'
+
+    } else {
+      currentBox.shift()
+      let currentBoxStr = currentBox.join('\n')
+      result += currentBoxStr
+    }
   }
-  // Code here
-  return '';
+  return result
 }
-console.log(distributeWeight(1)) */
-// Devuelve:
-//  _
-// |_|
-
-
-//     _
-// 1: |_|
-//     _____
-// 2: |_____|
-//     _____
-// 5: |     |
-//    |_____|
-//      _________
-// 10: |         |
-//     |_________|
-
-// console.log(distributeWeight(2))
-// Devuelve:
-//  ___
-// |___|
-
-// console.log(distributeWeight(3))
-// Devuelve:
-//  _
-// |_|_
-// |___|
-
-// console.log(distributeWeight(4))
-// Devuelve:
-//  ___
-// |___|
-// |___|
-
-// console.log(distributeWeight(5))
-// Devuelve:
-//  _____
-// |     |
-// |_____|
-
-// console.log(distributeWeight(6))
-// Devuelve:
-//  _
-// |_|___
-// |     |
-// |_____|
+console.log(distributeWeight(5)) */
 
 /* // Challenge20
 function fixGiftList(received, expected) {
@@ -641,74 +628,27 @@ const tree = {
 }
 console.log(treeHeight(tree)) // Devuelve: 3 */
 
-// Challenge22
-/* function generateGiftSets(gifts) {
-  let result = []
-  for (let gift = 0; gift < gifts.length; gift++) {
-    if (gifts[gift] !== gifts[gift] + 1) {
-      result.push([gifts[gift]])
-    }
-  }
-  if (gifts.length > 2) {
-    result.push(gifts.slice(0, 2))
-    result.push([gifts[0], gifts[2]])
-    result.push(gifts.slice(-2))
-  }
-
-  if (gifts.length > 1) {
-    result.push(gifts)
-  }
-  return result
-} */
-
-/* function generateGiftSets(juguetes) {
+/* // Challenge22
+function generateGiftSets(gifts) {
   let result = []
 
-  // Función recursiva para generar las combinaciones
   function backtrack(start, currentCombination) {
-    // Evitar agregar la combinación vacía
     if (currentCombination.length > 0) {
       result.push([...currentCombination])
     }
 
-    // Recorrer el array y hacer backtracking
-    for (let i = start; i < juguetes.length; i++) {
-
-      // Agregar el juguete actual a la combinación
-      currentCombination.push(juguetes[i])
-
-      // Llamada recursiva para explorar más combinaciones
+    for (let i = start; i < gifts.length; i++) {
+      currentCombination.push(gifts[i])
       backtrack(i + 1, currentCombination)
-
-      // Retroceder (deshacer la elección) para explorar otras combinaciones
       currentCombination.pop()
     }
   }
-
-  // Iniciar el backtracking desde el índice 0
   backtrack(0, [])
+  result.sort((a, b) => a.length - b.length)
 
   return result
 }
-
-console.log(generateGiftSets(['car', 'doll', 'puzzle']))
-const gifts =
-  [
-    ['car'],
-    ['doll'],
-    ['puzzle'],
-    ['car', 'doll'],
-    ['car', 'puzzle'],
-    ['doll', 'puzzle'],
-    ['car', 'doll', 'puzzle']
-  ] */
-
-// generateGiftSets(['game', 'pc'])
-// [
-//   ['game'],
-//   ['pc'],
-//   ['game', 'pc']
-// ]
+console.log(generateGiftSets(['car', 'doll', 'puzzle'])) */
 
 /* // Challenge23
 function findMissingNumbers(nums) {
@@ -729,65 +669,92 @@ function findMissingNumbers(nums) {
 }
 console.log(findMissingNumbers([4, 8, 7, 2])) */
 
-// Challenge24
-/* function isTreesSynchronized(tree1, tree2) {
-  // Code here
-  return [false, '']
-}
+/* // Challenge24
+function isTreesSynchronized(tree1, tree2) {
+  if (!tree1 && !tree2) {
+    return [true, null]
+  }
 
+  if (!tree1 || !tree2) {
+    return [false, tree1 ? tree1.value : tree2.value]
+  }
+
+  if (tree1.value !== tree2.value) {
+    return [false, tree1.value]
+  }
+
+  const leftRightMirror = isTreesSynchronized(tree1.left, tree2.right)
+  const rightLeftMirror = isTreesSynchronized(tree1.right, tree2.left)
+
+  const isSynchronized = leftRightMirror[0] && rightLeftMirror[0]
+
+  return [isSynchronized, tree1.value]
+}
 const tree1 = {
   value: '🎄',
   left: { value: '⭐' },
   right: { value: '🎅' }
 }
-
 const tree2 = {
   value: '🎄',
-  left: { value: '🎅' }
-  right: { value: '⭐' },
-}
-
-
-const tree3 = {
-  value: '🎄',
   left: { value: '🎅' },
-  right: { value: '🎁' }
+  right: { value: '⭐' }
 }
+console.log(isTreesSynchronized(tree1, tree2)) // [true, '🎄'] */
 
-isTreesSynchronized(tree1, tree3) // [false, '🎄']
+/* // Challenge25
+function execute(code) {
+  if (code === '') { return 0 }
+  const buffer = {}
 
-const tree4 = {
-  value: '🎄',
-  left: { value: '⭐' },
-  right: { value: '🎅' }
+  for (let i = 0; i < code.length; i++) {
+    const [instruction, a] = code[i].split(' ')
+
+    console.log(buffer[a]);
+
+    switch (instruction) {
+      case '>': {
+        code[i]++
+        break
+      }
+      case '+': {
+        buffer[a] = (buffer[a] || 0) + 1
+        break
+      }
+      case '-': {
+        buffer[a] = (buffer[a] || 0) - 1
+        break
+      }
+      case '[': {
+        if ((buffer[a] || 0) === 0) {
+          buffer[a]++
+        } else {
+          buffer[a] = 0
+          let depth = 0
+          while (depth < 1) {
+            i++
+            if (code[i] === ']') depth++
+          }
+        }
+        break
+      }
+      case '{': {
+        if ((buffer[a] || 0) === 0) {
+          let depth = 0;
+          while (depth < 1) {
+            i++
+            if (code[i] === '}') depth++
+          }
+        } else {
+          code[i]++
+        }
+        break
+      }
+    }
+  }
+  if (buffer[undefined] === undefined) {
+    buffer[undefined] = 0
+  }
+  return buffer[undefined]
 }
-
-isTreesSynchronized(tree1, tree4) // [false, '🎄']
-
-isTreesSynchronized(
-  { value: '🎅' },
-  { value: '🧑‍🎄' }
-) // [false, '🎅'] */
-
-// Challenge25
-/* function execute(code) {
-  // Code here
-  return 0
-}
-  
-> Se mueve a la siguiente instrucción
-+ Incrementa en 1 el valor actual
-- Decrementa en 1 el valor actual
-[ y ]: Bucle. Si el valor actual es 0, salta a la instrucción después de ]. Si no es 0, vuelve a la instrucción después de [
-{y }: Condicional. Si el valor actual es 0, salta a la instrucción después de }. Si no es 0, sigue a la instrucción después de {
-Tienes que devolver el valor del programa tras ejecutar todas las instrucciones.
-
-execute('+++') // 3
-execute('+--') // -1
-execute('>+++[-]') // 0
-execute('>>>+{++}') // 3
-execute('+{[-]+}+') // 2
-execute('{+}{+}{+}') // 0
-execute('------[+]++') // 2
-execute('-[++{-}]+{++++}') // 5 */
-
+console.log(execute('++++[-->]>++')) // 2 */
