@@ -156,16 +156,11 @@ function createChristmasTree(ornaments, height) {
 
 console.log(createChristmasTree("x", 3)) */
 
-<<<<<<< HEAD
 /* // Challenge11
 function getIndexsForPalindrome(word) {
   function reverseWord(word) {
     return word === word.split('').reverse().join('')
   }
-=======
-// Challenge11
-
->>>>>>> 79b8ea25923ee4f39350ece892c653d84ddd53a6
 
   function swap(word, start, end) {
     const palabra = word.split('');
@@ -198,7 +193,26 @@ function checkIsValidCopy(original, copy) {
 }
 console.log(checkIsValidCopy('Santa Claus', 's#+:. c:. s')) // true */
 
-// Challenge13
+/* // Challenge13
+function calculateTime(deliveries) {
+  const LIMIT = 7 * 3600
+
+  const totalTimeInSeconds = deliveries.reduce((total, delivery) => {
+    const [hours, minutes, seconds] = delivery.split(':').map(Number)
+    return total + (hours * 3600) + (minutes * 60) + seconds
+  }, 0)
+
+  const difference = totalTimeInSeconds - LIMIT
+
+  const sign = difference < 0 ? '-' : ''
+  const absDifference = Math.abs(difference)
+  const hours = String(Math.floor(absDifference / 3600)).padStart(2, '0')
+  const minutes = String(Math.floor((absDifference % 3600) / 60)).padStart(2, '0')
+  const seconds = String(absDifference % 60).padStart(2, '0')
+
+  return `${sign}${hours}:${minutes}:${seconds}`
+}
+console.log(calculateTime(['00:10:00', '01:00:00', '03:30:00'])) */
 
 // Challenge14
 
